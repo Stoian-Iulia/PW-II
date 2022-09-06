@@ -1,3 +1,1 @@
-# Project name: Shopping cart
-
-## Entities:
+# PW-II
