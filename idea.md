@@ -1,7 +1,6 @@
 # Project name: Shopping cart
 
-### UML: [[https://drive.google.com/file/d/1IPSkrnRg-1fERM6L0g_tVeRGg4wWdmZs/view?usp=sharing](https://app.diagrams.net/#G1IPSkrnRg-1fERM6L0g_tVeRGg4wWdmZs)](https://drive.google.com/file/d/1IPSkrnRg-1fERM6L0g_tVeRGg4wWdmZs/view?usp=sharing)
-
+### UML: https://drive.google.com/file/d/1IPSkrnRg-1fERM6L0g_tVeRGg4wWdmZs/view?usp=sharing
 ## Entities:
 
 ### User
