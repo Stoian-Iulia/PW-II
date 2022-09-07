@@ -4,17 +4,18 @@
 
 ## Entities:
 
-### Customer
+### User
 ```
 {
     id: number(PK, autoincrement),
-    name_cust: string(required, min: 4: max: 20),
     adress: string(required, min: 6, max: 20),
     email: string(required, min: 6, max: 20),
-    region: string(optional, min: 4, max: 20)
+    password: string(required, min 6, max: 20),
+    role: string(required, min: 3, max: 20),
+    cart_id: int(required, FK to cart.id)
 }
 ```
-### Order
+### Cart
 ```
 {
     id: number(PK, autoincrement),
