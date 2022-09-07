@@ -5,7 +5,7 @@
 ## Entities:
 
 ### Customer
-...
+```
 {
     id: number(PK, autoincrement),
     name_cust: string(required, min: 4: max: 20),
@@ -13,8 +13,9 @@
     email: string(required, min: 6, max: 20),
     region: string(optional, min: 4, max: 20)
 }
-...
+```
 ### Order
+```
 {
     id: number(PK, autoincrement),
     nr_order: int(required),
@@ -22,8 +23,9 @@
     total_price: float(optional),
     customer_id: int(required, FK to customer.id)
 }
-
+```
 ### Product
+```
 {
     id: number(PK, autoincrement),
     name_P: string(required, min: 4, max: 20),
@@ -31,24 +33,25 @@
     description: string(optional, min: 5, max: 200),
     order_id: int(required, FK to order.id) 
 }
-
+```
 ### Category
+```
 {
     id: number(PK, autoincrement),
     name_categ: string(required, min: 5, max: 20),
     product_id: int(required, FK to product.id)
 
 }
-
-
+```
 ### Admin
+```
 {
     id: number(PK, autoincrement),
     name: string(required, min: 4: max: 20),
     email: string(required, min: 10: max: 20),
     category_id: int(required, FK to category_id)
 }
-
+```
 ## CRUD methods
 + Create
 + Read all entities
