@@ -59,8 +59,13 @@
 + Update entity
 + Delete entity
 
-## Custom endpoints
+## Custom endpoints:
 + Get all products by categories
 + Get all products by alfabeth
 + Find products by part of name
 + Show the product list
+
+## User authentification:
+
+
+## Working with files:
