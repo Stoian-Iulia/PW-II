@@ -8,7 +8,7 @@
 ```
 {
     id: number(PK, autoincrement),
-    name_cust: string(required, min: 4: max: 20),
+    name_cust: string(required, min: 4, max: 20),
     adress: string(required, min: 6, max: 20),
     email: string(required, min: 6, max: 20),
     region: string(optional, min: 4, max: 20)
