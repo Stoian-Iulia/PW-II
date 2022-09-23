@@ -1,0 +1,30 @@
+{
+  "name": "pw-ii",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev":"nodemon indexjs" 
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Stoian-Iulia/PW-II.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Stoian-Iulia/PW-II/issues"
+  },
+  "homepage": "https://github.com/Stoian-Iulia/PW-II#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.2",
+    "express": "^4.18.1",
+    "pg": "^8.8.0",
+    "pg-hstore": "^2.3.4",
+    "sequelize": "^6.23.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
+}
