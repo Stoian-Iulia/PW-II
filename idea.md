@@ -1,6 +1,6 @@
 # Project name: Shopping cart
 
-### UML: https://app.diagrams.net/#G1IPSkrnRg-1fERM6L0g_tVeRGg4wWdmZs
+### UML: https://github.com/Stoian-Iulia/PW-II/blob/main/Shoping%20cart-%D0%A1%D1%82%D1%80%D0%B0%D0%BD%D0%B8%D1%86%D0%B0%202.drawio.png
 ## Entities:
 
 ### User
