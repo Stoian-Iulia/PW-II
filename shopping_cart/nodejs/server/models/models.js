@@ -49,14 +49,16 @@ Basket.belongsTo(User)  //обозначаем, что корзина прина
 Basket.hasMany(BasketDevice)
 BasketDevice.belongsTo(Basket)
 
-BasketDevice.hasOne(Device)
-Device.belongsTo(BasketDevice)
-
-Device.hasMany(DeviceInfo)
-DeviceInfo.belongsTo(Device)
-
 Type.hasMany(Device)
 Device.belongsTo(Type)
 
 Brand.hasMany(Device)
 Device.belongsTo(Brand)
+
+Device.hasMany(BasketDevice) //
+BasketDevice.belongsTo(Device)
+
+Device.hasMany(DeviceInfo)
+DeviceInfo.belongsTo(Device)
+
+
