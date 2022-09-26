@@ -9,4 +9,4 @@ module.exports = new Sequelize(   //экспортируем объект кот
         host: process.env.DB_HOST,      //объект
         port: process.env.DB_PORT
     }
-) 
+)  
