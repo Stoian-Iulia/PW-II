@@ -3,7 +3,7 @@ const {DataTypes, STRING} = require('sequelize')
 
 const User = sequelize.define( 'user',{  
     id: {type:DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
-    email: {type: DataTypes.STRING, unique: true},
+    email: {type: DataTypes.STRING, unique: true},    //должно быть уникальным, не может быть пустым
     password: {type: DataTypes.STRING},
     role: {type: DataTypes.STRING, defaultValue: "USER"},
 })
@@ -18,7 +18,7 @@ const BasketDevice = sequelize.define( 'basket_device',{
 
 const Device = sequelize.define( 'device',{  
     id: {type:DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
-    name: {type: DataTypes.STRING, unique: true, allowNull: false},  //должно быть уникальным, не может быть пустым
+    name: {type: DataTypes.STRING, unique: true, allowNull: false}, 
     price: {type: DataTypes.INTEGER, allowNull: false},
     img: {type: DataTypes.STRING, allowNull: false},   //в строке будем хранить название файла и его рпсширение
 })
@@ -38,3 +38,25 @@ const DeviceInfo = sequelize.define( 'device_info',{
     title: {type: DataTypes.STRING, allowNull: false},
     description: {type: DataTypes.STRING, allowNull: false},
 })
+
+
+//связь моделей между собой
+//прописываем двухстороннюю связь
+
+User.hasOne(Basket)   
+Basket.belongsTo(User)  //обозначаем, что корзина принадлежит пользователю
+
+Basket.hasMany(BasketDevice)
+BasketDevice.belongsTo(Basket)
+
+BasketDevice.hasOne(Device)
+Device.belongsTo(BasketDevice)
+
+Device.hasMany(DeviceInfo)
+DeviceInfo.belongsTo(Device)
+
+Type.hasMany(Device)
+Device.belongsTo(Type)
+
+Brand.hasMany(Device)
+Device.belongsTo(Brand)
