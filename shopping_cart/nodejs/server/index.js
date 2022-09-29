@@ -9,8 +9,8 @@ const start = async() =>  {       //асинхронная функция для
 
    // блок try catch чтобы отлавливать возможные ошибки
     try {
-        // await sequelize.authenticate()  //устанавливает подключение к базе данных
-        // await sequelize.sync() //сверяет состояние базы данных со схемой данных
+        await sequelize.authenticate()  //устанавливает подключение к базе данных
+        await sequelize.sync() //сверяет состояние базы данных со схемой данных
         app.listen(PORT, () => console.log(`Server started on port ${PORT}`)) //у app вызываем функцию listen, в которой указываем какой порт должен прослушивать наш сервер
     } catch (e) {
         console.log(e)
