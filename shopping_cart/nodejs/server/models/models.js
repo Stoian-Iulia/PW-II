@@ -69,3 +69,12 @@ Device.hasMany(DeviceInfo)
 DeviceInfo.belongsTo(Device)
 
 
+module.exports = {       //экспорт моделей чтобы использовать в других файлах
+    User,
+    Order,
+    BasketDevice,
+    Device,
+    DeviceInfo,
+    Type,
+    Brand
+}
