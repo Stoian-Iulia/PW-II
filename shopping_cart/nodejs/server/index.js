@@ -1,11 +1,26 @@
 require("dotenv").config()
 const express = require('express') //с помощью require можно импортировать какие то модули в файл, в данном случае express
 const sequelize = require('./db')  //импорт объекта из файла .db
+
+const models = require('./models/models.js')
+
+const cors = require('cors')//настроим установленный корс для того чтобы мы молги отправлять запросы с брайзера
+
 const PORT = process.env.PORT || 3000 //получаем порт из переменной окружения, если эта переменная не задана, тогда по умоолчанию будет порт 5000
 
 const app = express() //создаем объект вызвав функцию экспресс, с него будет начинаться запуск нашего приложения
 
 const start = async() =>  {       //асинхронная функция для подключения к базе данных
+//настройка cors чтобы можно было отправлять запрос с браузера
+app.use(cors())  
+app.use(express.json)  //чтобы можно было парсить json формат
+
+
+app.get('/', (req, res) => {
+    res.status(200).json({message: 'WORKING!'})
+
+})
+
 
    // блок try catch чтобы отлавливать возможные ошибки
     try {

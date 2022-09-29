@@ -54,7 +54,7 @@ User.hasOne(Order)
 Order.belongsTo(User)  //обозначаем, что корзина принадлежит пользователю
 
 Order.hasMany(BasketDevice)
-BasketDevice.belongsTo(Basket)
+BasketDevice.belongsTo(Order)
 
 Type.hasMany(Device)
 Device.belongsTo(Type)
