@@ -9,12 +9,12 @@ const User = sequelize.define( 'user',
     role: {type: DataTypes.STRING, defaultValue: "USER"},
 })
 
-const Basket = sequelize.define( 'basket',
+const Order = sequelize.define( 'order',
 {  
     id: {type:DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
 })
 
-const BasketDevice = sequelize.define( 'basket_device',
+const Basket = sequelize.define( 'basket',
 {  
     id: {type:DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
 })
@@ -50,10 +50,10 @@ const DeviceInfo = sequelize.define( 'device_info',
 //связь моделей между собой
 //прописываем двухстороннюю связь
 
-User.hasOne(Basket)   
-Basket.belongsTo(User)  //обозначаем, что корзина принадлежит пользователю
+User.hasOne(Order)   
+Order.belongsTo(User)  //обозначаем, что корзина принадлежит пользователю
 
-Basket.hasMany(BasketDevice)
+Order.hasMany(BasketDevice)
 BasketDevice.belongsTo(Basket)
 
 Type.hasMany(Device)
@@ -62,7 +62,7 @@ Device.belongsTo(Type)
 Brand.hasMany(Device)
 Device.belongsTo(Brand)
 
-Device.hasMany(BasketDevice) //
+Device.hasMany(BasketDevice)
 BasketDevice.belongsTo(Device)
 
 Device.hasMany(DeviceInfo)
