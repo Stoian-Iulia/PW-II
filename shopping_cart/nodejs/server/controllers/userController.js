@@ -4,7 +4,7 @@ class UserController {
     }
 
     async login (req, res) {
-        
+        return res.status(200).json({"message": "I will format my code"})
     }
 
     async check (req, res) {

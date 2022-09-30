@@ -5,23 +5,22 @@ const models = require('./models/models.js')
 const cors = require('cors')//настроим установленный корс для того чтобы мы молги отправлять запросы с брайзера
 const router = require('./routes/index')
 
-const PORT = process.env.PORT || 3000 //получаем порт из переменной окружения, если эта переменная не задана, тогда по умоолчанию будет порт 5000
+const PORT = process.env.PORT || 5000 //получаем порт из переменной окружения, если эта переменная не задана, тогда по умоолчанию будет порт 5000
 
 const app = express() //создаем объект вызвав функцию экспресс, с него будет начинаться запуск нашего приложения
 
-const start = async() =>  {       //асинхронная функция для подключения к базе данных
-//настройка cors чтобы можно было отправлять запрос с браузера
-app.use(cors())  
-app.use(express.json)  //чтобы можно было парсить json формат
-app.use('./api', router)
+const start = async () => {       //асинхронная функция для подключения к базе данных
+    //настройка cors чтобы можно было отправлять запрос с браузера
+    app.use(cors())  
+    app.use(express.json())  //чтобы можно было парсить json формат
+    app.use('/', router)
 
-app.get('/', (req, res) => {
-    res.status(200).json({message: 'WORKING!'})
+    app.get('', (req, res) => {
+        res.status(200).json({ message: 'WORKING!' })
+    })
 
-})
 
-
-   // блок try catch чтобы отлавливать возможные ошибки
+    // блок try catch чтобы отлавливать возможные ошибки
     try {
         await sequelize.authenticate()  //устанавливает подключение к базе данных
         await sequelize.sync() //сверяет состояние базы данных со схемой данных

@@ -7,7 +7,7 @@ const userRouter = require('./userRouter')
 
 
 //объединение всех роутеров в один
-router.use('/user', userRouter)
+router.use('/users', userRouter)
 router.use('/type', typeRouter)
 router.use('/brand', brandRouter)
 router.use('/device', deviceRouter)
