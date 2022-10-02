@@ -14,7 +14,7 @@ const app = express()  //создаем объект вызвав функцию
 const start = async () => {  //асинхронная функция для подключения к базе данных
     app.use(cors())  //настройка cors чтобы можно было отправлять запрос с браузера
     app.use(express.json())  //чтобы можно было парсить json формат
-    app.use(express.static(path.resolve(__dirname, 'static')))  
+    app.use(express.static(path.resolve(__dirname, 'resources')))  
     app.use(fileUpload({}))  //для работы с файлами
     app.use('/', router)
 
