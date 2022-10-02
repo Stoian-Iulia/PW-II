@@ -1,10 +1,10 @@
 const Router = require('express')
 const router = new Router()
-const userController = require('../controllers/userController')
+const UserController = require('../controllers/userController')
 
-router.post('/registration', userController.registration)
-router.post('/login', userController.login)
-router.get('/auth', userController.check)              //проверка авторизован пользоватедь или нет
+router.post('/registration', UserController.registration)
+router.post('/login', UserController.login)
+router.get('/auth', UserController.check)              //проверка авторизован пользоватедь или нет
 //  (req, res) => {       
 //      res.json({message: 'All Working!'})
 // })  

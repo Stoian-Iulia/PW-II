@@ -4,6 +4,7 @@ const sequelize = require('./db')  //импорт объекта из файла
 const models = require('./models/models.js')
 const cors = require('cors')//настроим установленный корс для того чтобы мы молги отправлять запросы с брайзера
 const router = require('./routes/index')
+const errorHandler = require('./middleware/errorHandlingMiddleware')
 
 const PORT = process.env.PORT || 5000 //получаем порт из переменной окружения, если эта переменная не задана, тогда по умоолчанию будет порт 5000
 
@@ -15,9 +16,14 @@ const start = async () => {       //асинхронная функция для
     app.use(express.json())  //чтобы можно было парсить json формат
     app.use('/', router)
 
-    app.get('', (req, res) => {
-        res.status(200).json({ message: 'WORKING!' })
-    })
+
+
+//Обработка ошибок, последний Middleware
+    app.use(errorHandler)
+
+    // app.get('', (req, res) => {
+    //     res.status(200).json({ message: 'WORKING!' })
+    // })
 
 
     // блок try catch чтобы отлавливать возможные ошибки
