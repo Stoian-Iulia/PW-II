@@ -3,8 +3,10 @@ const express = require('express') //с помощью require можно имп
 const sequelize = require('./db')  //импорт объекта из файла .db
 const models = require('./models/models.js')
 const cors = require('cors')//настроим установленный корс для того чтобы мы молги отправлять запросы с брайзера
+const fileUpload = require('express-fileupload')
 const router = require('./routes/index')
 const errorHandler = require('./middleware/errorHandlingMiddleware')
+const path = require('path')
 
 const PORT = process.env.PORT || 5000 //получаем порт из переменной окружения, если эта переменная не задана, тогда по умоолчанию будет порт 5000
 
@@ -14,6 +16,8 @@ const start = async () => {       //асинхронная функция для
     //настройка cors чтобы можно было отправлять запрос с браузера
     app.use(cors())  
     app.use(express.json())  //чтобы можно было парсить json формат
+    app.use(express.static(path.resolve(__dirname, 'static')))  
+    app.use(fileUpload({}))  //для работы с файлами
     app.use('/', router)
 
 
