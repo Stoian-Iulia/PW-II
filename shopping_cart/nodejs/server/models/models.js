@@ -1,5 +1,5 @@
 const sequelize = require('../db')   //импортируем объект sequelize
-const {DataTypes, STRING} = require('sequelize')
+const {DataTypes, STRING, INTEGER} = require('sequelize')
 
 const User = sequelize.define( 'user',
 {  
@@ -46,6 +46,12 @@ const DeviceInfo = sequelize.define( 'device_info',
     description: {type: DataTypes.STRING, allowNull: false},
 })
 
+const TypeBrand = sequelize.define('type_brand', 
+{
+    id:{type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
+
+})
+
 
 //связь моделей между собой
 //прописываем двухстороннюю связь
@@ -68,6 +74,9 @@ BasketDevice.belongsTo(Device)
 Device.hasMany(DeviceInfo)
 DeviceInfo.belongsTo(Device)
 
+Type.belongsToMany(Brand, {through: TypeBrand})
+Brand.belongsToMany(Type, {through: TypeBrand})
+
 
 module.exports = {       //экспорт моделей чтобы использовать в других файлах
     User,
@@ -76,5 +85,6 @@ module.exports = {       //экспорт моделей чтобы исполь
     Device,
     DeviceInfo,
     Type,
-    Brand
+    Brand,
+    TypeBrand
 }

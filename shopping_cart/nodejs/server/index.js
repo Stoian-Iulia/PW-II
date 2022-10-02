@@ -18,12 +18,11 @@ const start = async () => {       //асинхронная функция для
 
 
 
+
+
 //Обработка ошибок, последний Middleware
     app.use(errorHandler)
 
-    // app.get('', (req, res) => {
-    //     res.status(200).json({ message: 'WORKING!' })
-    // })
 
 
     // блок try catch чтобы отлавливать возможные ошибки
