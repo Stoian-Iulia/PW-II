@@ -1,4 +1,4 @@
-const uuid = require('uuid'); //установленный пакет uuid который будет генерировать случайные рандомные id
+const uuid = require('uuid');  //установленный пакет uuid который будет генерировать случайные рандомные id
 const path = require('path');
 const {Device} = require('../models/models');
 const apiError = require('../error/apiError');
