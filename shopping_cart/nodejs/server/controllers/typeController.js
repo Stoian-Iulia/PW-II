@@ -8,9 +8,13 @@ class TypeController {
         return res.json(type);
     }
 
-    async getAll(req, res) {  //получение объектов и БД
+    async getAll(req, res) {  //получение объектов из БД
         const types = await Type.findAll()
         return res.json(types);
+    }
+
+    async update(req, res) {
+        
     }
 }
 
