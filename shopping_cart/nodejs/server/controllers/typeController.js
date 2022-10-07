@@ -13,8 +13,22 @@ class TypeController {
         return res.json(types);
     }
 
-    async update(req, res) {
-        
+    async delete(req, res) {
+        try {
+            const {id} = req.params;
+            await Type.findOne({where:{id}})
+                .then( async data => {
+                    if(data) {
+                        await Type.destroy({where:{id}}).then(() => {
+                            return res.json("Type deleted");
+                        })
+                    } else {
+                        return res.json("This Type doesn't exist in DB");
+                    }
+                })
+        } catch (e) {
+            return res.json(e);
+        }
     }
 }
 

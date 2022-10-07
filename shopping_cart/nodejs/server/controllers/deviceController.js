@@ -66,6 +66,27 @@ class DeviceController {
         )
         return res.json(device)
     } 
+
+    async delete(req, res) {
+        try {
+            const {id} = req.params;
+            await Device.findOne({where:{id}})
+                .then( async data => {
+                    if(data) {
+                        await Device.destroy({where:{id}}).then(() => {
+                            return res.json("Device deleted");
+                        })
+                    } else {
+                        return res.json("This Device doesn't exist in DB");
+                    }
+
+                    await OrderDevice.destroy({where:{deviceId: id}})
+                    await BasketDevice.destroy({where:{deviceId: id}})
+                })
+        } catch (e) {
+            return res.json(e);
+        }
+    }
 }
 
 module.exports = new DeviceController();

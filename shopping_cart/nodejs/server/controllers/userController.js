@@ -4,7 +4,11 @@ const jwt = require('jsonwebtoken');
 const {User, Order} = require('../models/models');
 
 const generateJwt = (id, email, role) => {
-
+    return jwt.sign(
+        {id, email, role},
+        process.env.SECRET_KEY,
+        {expiresIn: '24h'}
+    )
 }
 
 class UserController {
@@ -20,24 +24,29 @@ class UserController {
         const hashPassword = await bcrypt.hash(password, 3)
         const user = await User.create({email, role, password:hashPassword})
         const basket = await Order.create({userId: user.id})
-        const token = jwt.sign(
-            {id: user.id, email, role},
-            process.env.SECRET_KEY,
-            {expiresIn: '24h'}
-        )
-        return res.json({token})
+        const token = generateJwt(user.id, user.email, user.role)
+        return res.json({token});
     }
 
-    async login (req, res) {
-        return res.status(200).json({"message": "It's working!"});
+    async login (req, res, next) {
+        // return res.status(200).json({"message": "It's working!"});
+        const {email, password} = req.body
+        const user = await User.findOne({where: {email}})
+        if (!user) {
+            return next(apiError.internal('Пользователь не найден'))
+        }
+        let comparePassword = bcrypt.compareSync(password, user.password)
+        if (!comparePassword) {
+            return next(apiError.internal('Указан неверный пароль'))
+        }
+        const token = generateJwt(user.id, user.email, user.role)
+        return res.json({token})
+            
+        
     }
  
     async check (req, res, next) {
-        const {id} = req.query;
-        if (!id) {
-            return next(apiError.badRequest('Не задан id'))
-        }
-        res.json(id);
+        
     }
 }
 

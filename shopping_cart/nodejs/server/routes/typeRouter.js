@@ -5,6 +5,6 @@ const { Type } = require('../models/models');
 
 router.post('/',TypeController.create)
 router.get('/', TypeController.getAll)
-router.patch('/', TypeController.update);
+router.delete('/:id', TypeController.delete);
 
 module.exports = router;
