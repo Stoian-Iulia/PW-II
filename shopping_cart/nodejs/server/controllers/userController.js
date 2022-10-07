@@ -1,7 +1,11 @@
 const apiError = require('../error/apiError');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const {User, Basket} = require('../models/models');
+const {User, Order} = require('../models/models');
+
+const generateJwt = (id, email, role) => {
+
+}
 
 class UserController {
     async registration (req, res, next) {
@@ -14,8 +18,8 @@ class UserController {
             return next(apiError.badRequest('Пользователь с таким email уже сушествует'))
         }
         const hashPassword = await bcrypt.hash(password, 3)
-        const user = await User.create({email, role, password, hashPassword})
-        const basket = await Basket.create({userId: user.id})
+        const user = await User.create({email, role, password:hashPassword})
+        const basket = await Order.create({userId: user.id})
         const token = jwt.sign(
             {id: user.id, email, role},
             process.env.SECRET_KEY,
