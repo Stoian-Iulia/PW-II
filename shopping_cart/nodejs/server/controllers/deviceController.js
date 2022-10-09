@@ -28,7 +28,7 @@ class DeviceController {
 
 
             return res.json(device)
-        } catch (e) {
+        } catch (error) {
             next(apiError.badRequest(e.message));
         }  
     }
@@ -74,10 +74,10 @@ class DeviceController {
                 .then( async data => {
                     if(data) {
                         await Device.destroy({where:{id}}).then(() => {
-                            return res.json("Device deleted");
+                            return res.json("Устройство было удалено");
                         })
                     } else {
-                        return res.json("This Device doesn't exist in DB");
+                        return res.json("Устройство не найдено в базе данных");
                     }
 
                     await OrderDevice.destroy({where:{deviceId: id}})

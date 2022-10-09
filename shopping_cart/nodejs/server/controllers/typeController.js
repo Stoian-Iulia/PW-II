@@ -20,10 +20,10 @@ class TypeController {
                 .then( async data => {
                     if(data) {
                         await Type.destroy({where:{id}}).then(() => {
-                            return res.json("Type deleted");
+                            return res.json("Данный тип удален");
                         })
                     } else {
-                        return res.json("This Type doesn't exist in DB");
+                        return res.json("Данный тип не был найден в базе данных ");
                     }
                 })
         } catch (e) {
@@ -76,10 +76,10 @@ class TypeController {
                         await Device.update({
                             ...newVal
                         }, {where:{id}} ).then(() => {
-                            return res.json("Device updated");
+                            return res.json("Данное устройство было обновлено");
                         })
                     } else {
-                        return res.json("This Device doesn't exist in DB");
+                        return res.json("Данное устройство не было найдено в базе данных");
                     }
                 })
             } catch (e) {
