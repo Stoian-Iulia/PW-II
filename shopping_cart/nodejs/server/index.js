@@ -1,11 +1,11 @@
 require("dotenv").config();
 const express = require('express');  //с помощью require можно импортировать какие то модули в файл, в данном случае express
-const sequelize = require('./db');  //импорт объекта из файла .db
+const sequelize = require('./database');  //импорт объекта из файла .db
 const models = require('./models/entities.js');
 const cors = require('cors')  //настроим установленный корс для того чтобы мы молги отправлять запросы с брайзера
 const fileUpload = require('express-fileupload');
 const router = require('./routes/index');
-const errorHandler = require('./middleware/errorHandlingMiddleware');
+const errorHandler = require('./middleware/errorMiddleware');
 const path = require('path');
 
 const PORT = process.env.PORT || 5000  //получаем порт из переменной окружения, если эта переменная не задана, тогда по умоолчанию будет порт 5000

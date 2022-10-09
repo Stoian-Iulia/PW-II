@@ -1,4 +1,4 @@
-const sequelize = require('../db');  //импортируем объект sequelize
+const sequelize = require('../database');  //импортируем объект sequelize
 const {DataTypes, STRING, INTEGER} = require('sequelize');
 
 const User = sequelize.define( 'user', {  
