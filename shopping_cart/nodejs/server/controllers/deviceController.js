@@ -74,10 +74,10 @@ class DeviceController {
                 .then( async data => {
                     if(data) {
                         await Device.destroy({where:{id}}).then(() => {
-                            return res.json("Устройство было удалено");
+                            return res.json("Device deleted");
                         })
                     } else {
-                        return res.json("Устройство не найдено в базе данных");
+                        return res.json("This Device doesn't exist in DB");
                     }
 
                     await OrderDevice.destroy({where:{deviceId: id}})
