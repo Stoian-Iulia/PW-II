@@ -1,7 +1,7 @@
 const Router = require('express');
 const router = new Router();
 const TypeController = require('../controllers/typeController');
-const { Type } = require('../models/models');
+const { Type } = require('../models/entities');
 const checkRole = require('../middleware/checkRoleMiddleware');
 
 

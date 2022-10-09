@@ -1,6 +1,6 @@
 const uuid = require('uuid');  //установленный пакет uuid который будет генерировать случайные рандомные id
 const path = require('path');
-const {Device, DeviceInfo} = require('../models/models');
+const {Device, DeviceInfo} = require('../models/entities');
 const apiError = require('../error/apiError');
 
 class DeviceController {

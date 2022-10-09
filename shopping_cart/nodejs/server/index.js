@@ -1,7 +1,7 @@
 require("dotenv").config();
 const express = require('express');  //с помощью require можно импортировать какие то модули в файл, в данном случае express
 const sequelize = require('./db');  //импорт объекта из файла .db
-const models = require('./models/models.js');
+const models = require('./models/entities.js');
 const cors = require('cors')  //настроим установленный корс для того чтобы мы молги отправлять запросы с брайзера
 const fileUpload = require('express-fileupload');
 const router = require('./routes/index');
