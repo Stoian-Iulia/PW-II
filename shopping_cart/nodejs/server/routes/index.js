@@ -1,9 +1,9 @@
 const Router = require('express');
 const router = new Router;
-const deviceRouter = require('./deviceRouter');
-const brandRouter = require('./brandRouter');
-const typeRouter = require('./typeRouter');
-const userRouter = require('./userRouter');
+const deviceRouter = require('./device');
+const brandRouter = require('./brand');
+const typeRouter = require('./type');
+const userRouter = require('./user');
 
 //объединение всех роутеров в один
 router.use('/users', userRouter)
