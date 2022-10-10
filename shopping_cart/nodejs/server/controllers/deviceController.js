@@ -26,7 +26,6 @@ class DeviceController {
                 });
             }
 
-
             return res.json(device)
         } catch (error) {
             next(apiError.badRequest(e.message));
@@ -36,22 +35,22 @@ class DeviceController {
     async getAll(req, res) {
         const {brandId, typeId} = req.query
         let devices;
-        if (!brandId && !typeId) {
-            devices = await Device.findAll()
-        }
 
-        if (brandId && !typeId) {
-            devices = await Device.findAll({where:{brandId}})
+        if (brandId && typeId) {
+            devices = await Device.findAll({where:{typeId, brandId}})
         }
 
         if (!brandId && typeId) {
             devices = await Device.findAll({where:{typeId}})
         }
 
-        if (brandId && typeId) {
-            devices = await Device.findAll({where:{typeId, brandId}})
+        if (brandId && !typeId) {
+            devices = await Device.findAll({where:{brandId}})
         }
 
+        if (!brandId && !typeId) {
+            return res.json("This Device doesn't exist in DB");
+        }
         return res.json(devices)
     } 
 
@@ -84,7 +83,7 @@ class DeviceController {
                     await BasketDevice.destroy({where:{deviceId: id}})
                 })
         } catch (e) {
-            return res.json(e);
+            return res.json(error);
         }
     }
 }
