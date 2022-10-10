@@ -21,7 +21,6 @@ class DeviceController {
                         title: i.title,
                         description: i.description,
                         deviceId: device.id,
-
                     })
                 });
             }
@@ -30,14 +29,14 @@ class DeviceController {
         } catch (error) {
             next(apiError.badRequest(e.message));
         }  
-    }
+    };
     
     async getAll(req, res) {
-        const {brandId, typeId} = req.query
+        const {brandId, typeId} = req.query  //запрос к базе данных
         let devices;
 
         if (brandId && typeId) {
-            devices = await Device.findAll({where:{typeId, brandId}})
+            devices = await Device.findAll({where:{typeId, brandId}})  //указываем параметром поля по которым надо искать
         }
 
         if (!brandId && typeId) {
@@ -49,10 +48,10 @@ class DeviceController {
         }
 
         if (!brandId && !typeId) {
-            return res.json("This Device doesn't exist in DB");
+            devices = await Device.findAll();
         }
-        return res.json(devices)
-    } 
+        return res.json(devices);
+    }
 
     async getOne(req, res) { 
         const {id} = req.params
@@ -60,11 +59,10 @@ class DeviceController {
             {
                 where: {id}, 
                 include:[{model: DeviceInfo, as: 'info'}]
-            
             },
         )
-        return res.json(device)
-    } 
+        return res.json(device);
+    }
 
     async delete(req, res) {
         try {
@@ -78,12 +76,11 @@ class DeviceController {
                     } else {
                         return res.json("This Device doesn't exist in DB");
                     }
-
                     await OrderDevice.destroy({where:{deviceId: id}})
                     await BasketDevice.destroy({where:{deviceId: id}})
                 })
         } catch (e) {
-            return res.json(error);
+            return res.json(e);
         }
     }
 }

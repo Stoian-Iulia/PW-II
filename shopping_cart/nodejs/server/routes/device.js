@@ -7,6 +7,6 @@ const checkRole = require('../middleware/checkRoleMiddleware');
 router.post('/', checkRole('ADMIN'), DeviceController.create)  //на каждый маршрут передаем соответствующую функцию
 router.get('/', DeviceController.getAll)
 router.get('/:id', checkRole('ADMIN'), DeviceController.getOne);
-router.delete('/', checkRole('ADMIN'), DeviceController.delete);
+router.delete('/:id', checkRole('ADMIN'), DeviceController.delete);
 
 module.exports = router;
