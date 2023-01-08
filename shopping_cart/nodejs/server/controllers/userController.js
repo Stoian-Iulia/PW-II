@@ -28,7 +28,7 @@ class UserController {
         const basket = await Order.create({userId: user.id})
         const token = generateJwt(user.id, user.email, user.role)
         // return res.json({token});
-        return res.json("Registration was successful");
+        return res.status(200).json("Registration was successful");
     }
     async login (req, res, next) {
         // return res.status(200).json({"message": "It's working!"});

@@ -8,5 +8,6 @@ router.post('/', checkRole('ADMIN'), DeviceController.create)  //на кажды
 router.get('/', DeviceController.getAll)
 router.get('/:id', checkRole('ADMIN'), DeviceController.getOne);
 router.delete('/:id', checkRole('ADMIN'), DeviceController.delete);
+router.put('/:id', checkRole("ADMIN"), DeviceController.update)
 
 module.exports = router;
