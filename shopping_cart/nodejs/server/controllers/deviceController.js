@@ -64,6 +64,78 @@ class DeviceController {
         return res.json(device);
     }
 
+
+    async getSearchAllDeviceByName(req, res, next) {
+        try {
+            let {limit, page, name, filter} = req.query;
+
+            page = page || 1;
+            limit = limit || 7;
+            let offset = page * limit - limit
+            if(filter === "All") {
+                const devices =  await Device.findAndCountAll({
+                    attributes: ["name", "price", "img", "id"],
+                    where:
+                        {
+                            name: {
+                                [Op.like]: `%${name}%`
+                            }
+                        },
+                    include: [
+                        {
+                            attributes: ["name"],
+                            model: Brand
+                        },
+                        {
+                            attributes: ["name"],
+                            model: Type
+                        },
+                    ],
+                    limit,
+                    offset,
+                })
+
+                return res.json(devices);
+            } else {
+                const devices =  await Device.findAndCountAll({
+                    attributes: ["name", "price", "img", "id", "brandId", "typeId"],
+                    where:
+                        {
+                            name: {
+                                [Op.like]: `%${name}%`
+                            },
+                            [Op.or]: [
+                                {
+                                    brandId: null,
+                                },
+                                {
+                                    typeId: null,
+                                },
+                            ],
+                        },
+                    include: [
+                        {
+                            attributes: ["name"],
+                            model: Brand
+                        },
+                        {
+                            attributes: ["name"],
+                            model: Type
+                        },
+                    ],
+                    limit,
+                    offset,
+                })
+
+
+                return res.json(devices);
+            }
+        } catch (e) {
+            next(apiError.badRequest(e.message));
+        }
+    }
+
+
     async delete(req, res) {
         try {
             const {id} = req.params;
