@@ -27,7 +27,7 @@ class DeviceController {
 
             return res.json(device)
         } catch (error) {
-            next(apiError.badRequest(e.message));
+            next(apiError.badRequest(error.message));
         }  
     };
     
@@ -130,8 +130,8 @@ class DeviceController {
 
                 return res.json(devices);
             }
-        } catch (e) {
-            next(apiError.badRequest(e.message));
+        } catch (error) {
+            next(apiError.badRequest(error.message));
         }
     }
 
@@ -151,8 +151,8 @@ class DeviceController {
                     await OrderDevice.destroy({where:{deviceId: id}})
                     await BasketDevice.destroy({where:{deviceId: id}})
                 })
-        } catch (e) {
-            return res.json(e);
+        } catch (error) {
+            return res.json(error);
         }
     }
 
@@ -208,8 +208,8 @@ class DeviceController {
                         return res.json("This Device doesn't exist in DB");
                     }
                 })
-            } catch (e) {
-            return res.json(e);
+            } catch (error) {
+            return res.json(error);
         }
     }
 }
