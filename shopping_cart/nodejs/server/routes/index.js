@@ -7,8 +7,8 @@ const userRouter = require('./user');
 
 //объединение всех роутеров в один
 router.use('/users', userRouter)
-router.use('/type', typeRouter)
-router.use('/brand', brandRouter)
-router.use('/device', deviceRouter);
+router.use('/types', typeRouter)
+router.use('/brands', brandRouter)
+router.use('/devices', deviceRouter);
 
 module.exports = router;

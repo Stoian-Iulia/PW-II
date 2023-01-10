@@ -14,16 +14,16 @@ const generateJwt = (id, email, role) => {
 class UserController {
     async registration (req, res, next) {
         const {email, password, role} = req.body
-        if (!email || !password) {
+        if (!email || !password) { 
             return next(apiError.badRequest('Invalid email or password'));
         }
 
-        const candidate = await User.findOne({where: {email}})
+        const candidate = await User.findOne({where: {email}})  // проверяеи, существует ли такой пользователь в системе
         if (candidate) {
             return next(apiError.badRequest('User with such an email already exists'));
         }
 
-        const hashPassword = await bcrypt.hash(password, 3)
+        const hashPassword = await bcrypt.hash(password, 3)  // хэширование пароля и создание нового пользователя, второй параметр - число раз сколько будем хэшировать пароль
         const user = await User.create({email, role, password:hashPassword})
         const basket = await Order.create({userId: user.id})
         const token = generateJwt(user.id, user.email, user.role)
@@ -48,7 +48,8 @@ class UserController {
     }
  
     async check (req, res, next) {
-        
+        const token = generateJwt(req.user.id, req.user.email, req.user.role)  // генерация токена
+        return res.json({token})  // отправка на клиент
     }
 }
 
