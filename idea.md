@@ -11,34 +11,42 @@
     email: string(required, min: 6, max: 20),
     password: string(required, min 6, max: 20),
     role: string(required, min: 3, max: 20),
-    cart_id: int(required, FK to cart.id)
+
 }
 ```
-### Cart
+### Order
 ```
 {
     id: number(PK, autoincrement),
-    current_state: string(required, min: 6, max: 15),
-    total_price: float(optional),
+    user_id(FK, required)
 }
 ```
-### Product
+
+### Basket
 ```
 {
     id: number(PK, autoincrement),
-    name_P: string(required, min: 4, max: 20),
+    device_id: int(required, FK to basket.id),
+    basket_id(FK, required)
+}
+```
+### Device
+```
+{
+    id: number(PK, autoincrement),
+    name: string(required, min: 4, max: 20),
     price: float(required),
-    description: string(optional, min: 5, max: 200),
-    category_id: int(required, FK to category.id),
     brand_id: int(required, FK to brand.id),
-    cart_id: int(required, FK to cart.id)
+    type_id: int(required, FK to type.id)
 }
 ```
-### Category
+### Device_info
 ```
 {
     id: number(PK, autoincrement),
-    name_categ: string(required, min: 5, max: 20),
+    device_id: int(required, FK to device.id),
+    title: string(required, min: 5, max: 10),
+    description: string(required, min: 5, max: 30),
 
 }
 ```
@@ -46,7 +54,16 @@
 ```
 {
     id: number(PK, autoincrement),
-    name_barnd: string(required, min: 4: max: 20),
+    name: string(required, min: 4: max: 20),
+
+}
+```
+
+### Type
+```
+{
+    id: number(PK, autoincrement),
+    name: string(required, min: 4: max: 20),
 
 }
 ```
